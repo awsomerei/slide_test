@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .all_wrap{
+            position: relative; 
+            margin: auto;
+            overflow: auto;
+        }
+        .page{
+            position: absolute;
+            top: 0;
+        }
+        .button{
+            width: 100%;
+            float: left;
+            position: absolute;
+            top:50%;
+            margin-top: -35px;
+            font-weight: bold;
+            font-size: 2em;
+        }
+        .bt{
+            color: white;
+            width: 50px;
+            height: 70px;
+            transition: all 1s;
+            cursor: pointer;
+            text-align: center;
+            line-height: 70px;
+            border-radius: 5px;
+        }
+        .bt:hover{
+            background-color: rgba(58, 58, 58, 0.596);
+        }
+        .left{
+            float: left;
+        }
+        .right{
+            float: right;
+        }
+        .caption{
+            width: 100%;
+            position: absolute;
+            bottom: 10px;
+            font-size: 1.5em;
+            color: white;
+            font-weight: 300;
+            text-align: center;
+        }
+        img{
+            width: 100%;
+            height: 400px;
+        }
+        .nav{
+            width: fit-content;
+            overflow: auto;
+            margin: 20px auto;
+        }
+        .nav_bt{
+            margin: 5px;
+            width: 1.2em;
+            height: 1.2em;
+            background-color: rgb(207, 207, 207);
+            border-radius: 100%;
+            float: left;
+            cursor: pointer;
+            transition: all 1s;
+        }
+        .nav_bt:hover{
+            background-color: gray;
+        }
+        .nav .active{
+            background-color: gray;
+        }
+        .fade{
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="all_wrap">
+        <div class="slides fade">
+            <div class="page">1 / 3</div>
+            <img src="../html/imgs/img1.jpg" alt="">
+            <div class="caption"><p>Text 01</p></div>
+        </div>
+        <div class="slides fade">
+            <div class="page">2 / 3</div>
+            <img src="../html//imgs/IMG_1639.jpg" alt="">
+            <div class="caption"><p>Text 02</p></div>
+        </div>
+        <div class="slides fade">
+            <div class="page">3 / 3</div>
+            <img src="../html/imgs/img1.jpg" alt="">
+            <div class="caption"><p>Text 03</p></div>
+        </div>
+        <div class="button">
+                <a class="left bt" onclick="plusSlides(-1)">&lt;</a>
+                <a class="right bt" onclick="plusSlides(1)">&gt;</a>
+          </div>
+          
+        
+    </div>
+    <div class="nav">
+        <span class="nav_bt" onclick="currentSlide(1)"></span>
+        <span class="nav_bt" onclick="currentSlide(2)"></span>
+        <span class="nav_bt" onclick="currentSlide(3)"></span>
+    </div>
+    <script>
+        var slideIndex = 1;
+       
+
+        //Next / previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        //Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("slides");
+            var dots = document.getElementsByClassName("nav_bt");
+        if (n > slides.length) {
+            slideIndex = 1
+            }
+        if (n < 1) {
+            slideIndex = slides.length
+            }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+        showSlides(slideIndex);
+    </script>
+</body>
+</html>
